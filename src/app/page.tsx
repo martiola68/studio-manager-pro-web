@@ -83,7 +83,7 @@ const advantages = [
 function Brand() {
   return (
     <span className="brand">
-      <img src="/LogoSMP_.png" alt="" className="brandLogo" />
+      <img src="https://raw.githubusercontent.com/martiola68/studio-manager-pro/main/public/LogoSMP_.png" alt="" className="brandLogo" />
       <span className="brandWords">
         <strong>Studio Manager Pro</strong>
         <small>Sistema Gestionale Integrato</small>
@@ -132,7 +132,7 @@ export default function Home() {
         <div className="productStage" aria-label="Ecosistema Studio Manager Pro">
           <div className="stageGrid" />
           <div className="logoCore">
-            <img src="/LogoSMP_.png" alt="Logo Studio Manager Pro" />
+            <img src="https://raw.githubusercontent.com/martiola68/studio-manager-pro/main/public/LogoSMP_.png" alt="Logo Studio Manager Pro" />
             <strong>Studio Manager Pro</strong>
             <span>Sistema Gestionale Integrato</span>
           </div>
