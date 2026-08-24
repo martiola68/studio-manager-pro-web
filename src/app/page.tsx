@@ -102,6 +102,7 @@ export default function Home() {
           <a href="#moduli">Funzioni</a>
           <a href="#vantaggi">Potenzialità</a>
           <a href="#piani">Soluzioni</a>
+          <a className="installLink" href="https://app.studiomanagerpro.it/login?install=1">Installa l’app <span>↓</span></a>
           <a className="reservedLink" href="/accesso">Area riservata <span>↗</span></a>
         </nav>
       </header>
@@ -271,7 +272,10 @@ export default function Home() {
           <p className="eyebrow lightEyebrow">SEI GIÀ UN UTENTE SMP?</p>
           <h2>Il tuo ambiente di lavoro è nell’Area riservata.</h2>
         </div>
-        <a className="primaryButton whiteButton" href="/accesso">Vai all’Area riservata <span>→</span></a>
+        <div className="accessActions">
+          <a className="installBannerButton" href="https://app.studiomanagerpro.it/login?install=1">Installa l’app <span>↓</span></a>
+          <a className="primaryButton whiteButton" href="/accesso">Vai all’Area riservata <span>→</span></a>
+        </div>
       </section>
 
       <footer>
