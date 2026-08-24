@@ -45,6 +45,15 @@ nav > a:hover { color: var(--blue); }
 }
 nav .reservedLink:hover { color: white; background: var(--blue2); }
 .reservedLink span { margin-left: 6px; }
+.installLink {
+  padding: 11px 14px;
+  color: var(--blue2);
+  border: 1px solid #bdd9ef;
+  border-radius: 8px;
+  background: #f3f9fd;
+}
+nav .installLink:hover { color: white; background: var(--blue); border-color: var(--blue); }
+.installLink span { margin-left: 6px; }
 
 .heroV2 {
   position: relative;
@@ -209,6 +218,21 @@ h1 em { color: #62cfff; font-style: normal; }
 .accessBanner { padding: 95px max(20px, calc((100% - 1120px)/2)); color: white; background: var(--night); display: flex; justify-content: space-between; align-items: end; gap: 60px; }
 .accessBanner h2 { max-width: 780px; }
 .accessBanner .primaryButton { flex: 0 0 auto; }
+.accessActions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 12px; }
+.installBannerButton {
+  display: inline-flex;
+  min-height: 54px;
+  padding: 0 24px;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  color: #8bdcff;
+  border: 1px solid #2c5b86;
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: 850;
+}
+.installBannerButton:hover { color: white; border-color: #63cfff; background: rgba(99,207,255,.09); }
 
 footer { width: min(1240px, calc(100% - 40px)); min-height: 175px; margin: 0 auto; display: grid; grid-template-columns: auto 1fr auto; gap: 45px; align-items: center; color: #637084; font-size: 12px; }
 .footerCenter { text-align: center; }
