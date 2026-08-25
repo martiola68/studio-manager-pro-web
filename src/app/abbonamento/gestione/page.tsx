@@ -1,12 +1,27 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { createClient } from "@supabase/supabase-js";
+import { createClient, SupabaseClient } from "@supabase/supabase-js";
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL || "",
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ""
-);
+let supabaseClient: SupabaseClient | null = null;
+
+function getSupabaseClient() {
+  if (typeof window === "undefined") {
+    throw new Error("Supabase può essere inizializzato solo nel browser.");
+  }
+
+  if (supabaseClient) return supabaseClient;
+
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+  if (!supabaseUrl || !supabaseAnonKey) {
+    throw new Error("Configurazione Supabase non disponibile. Verifica NEXT_PUBLIC_SUPABASE_URL e NEXT_PUBLIC_SUPABASE_ANON_KEY.");
+  }
+
+  supabaseClient = createClient(supabaseUrl, supabaseAnonKey);
+  return supabaseClient;
+}
 
 type SubscriptionData = {
   ragione_sociale: string;
@@ -29,11 +44,16 @@ export default function GestioneAbbonamentoPage() {
   useEffect(() => {
     (async () => {
       try {
+        const supabase = getSupabaseClient();
         const hash = new URLSearchParams(window.location.hash.replace(/^#/, ""));
         const accessToken = hash.get("access_token");
         const refreshToken = hash.get("refresh_token");
+
         if (accessToken && refreshToken) {
-          const { error: sessionError } = await supabase.auth.setSession({ access_token: accessToken, refresh_token: refreshToken });
+          const { error: sessionError } = await supabase.auth.setSession({
+            access_token: accessToken,
+            refresh_token: refreshToken,
+          });
           if (sessionError) throw sessionError;
           window.history.replaceState({}, "", window.location.pathname);
         }
@@ -42,7 +62,9 @@ export default function GestioneAbbonamentoPage() {
         const token = sessionData.session?.access_token;
         if (!token) throw new Error("Link scaduto o non valido. Richiedi un nuovo link di accesso.");
 
-        const response = await fetch("/api/abbonamento/stato", { headers: { Authorization: `Bearer ${token}` } });
+        const response = await fetch("/api/abbonamento/stato", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         const json = await response.json();
         if (!response.ok) throw new Error(json?.error || "Impossibile caricare l’abbonamento");
         setData(json);
@@ -57,10 +79,13 @@ export default function GestioneAbbonamentoPage() {
   async function execute(kind: "portale" | "riattiva") {
     setAction(kind);
     setError("");
+
     try {
+      const supabase = getSupabaseClient();
       const { data: sessionData } = await supabase.auth.getSession();
       const token = sessionData.session?.access_token;
       if (!token) throw new Error("Sessione scaduta. Richiedi un nuovo link.");
+
       const response = await fetch(`/api/abbonamento/${kind}`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
@@ -119,8 +144,21 @@ export default function GestioneAbbonamentoPage() {
   );
 }
 
-const buttonStyle = { border: 0, borderRadius: 9, padding: "14px 20px", background: "linear-gradient(135deg,#0879c8,#0e4da5)", color: "white", fontWeight: 850, cursor: "pointer" } as const;
+const buttonStyle = {
+  border: 0,
+  borderRadius: 9,
+  padding: "14px 20px",
+  background: "linear-gradient(135deg,#0879c8,#0e4da5)",
+  color: "white",
+  fontWeight: 850,
+  cursor: "pointer",
+} as const;
 
 function Info({ label, value }: { label: string; value: string }) {
-  return <div style={{ padding: 16, background: "#f3f7fb", borderRadius: 10 }}><small style={{ color: "#62718a", textTransform: "uppercase", fontWeight: 800 }}>{label}</small><strong style={{ display: "block", marginTop: 7 }}>{value}</strong></div>;
+  return (
+    <div style={{ padding: 16, background: "#f3f7fb", borderRadius: 10 }}>
+      <small style={{ color: "#62718a", textTransform: "uppercase", fontWeight: 800 }}>{label}</small>
+      <strong style={{ display: "block", marginTop: 7 }}>{value}</strong>
+    </div>
+  );
 }
