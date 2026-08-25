@@ -5,63 +5,59 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
     const email = String(body?.email || "").trim().toLowerCase();
-    if (!email || !email.includes("@")) {
-      return NextResponse.json({ error: "Inserisci un indirizzo email valido" }, { status: 400 });
+    const password = String(body?.password || "");
+    const codiceFiscale = String(body?.codice_fiscale || "").trim().toUpperCase().replace(/\s+/g, "");
+
+    if (!email || !email.includes("@") || !password || !codiceFiscale) {
+      return NextResponse.json({ error: "Inserisci email, password e codice fiscale" }, { status: 400 });
     }
 
     const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
     const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-    const publicUrl = String(process.env.NEXT_PUBLIC_SITE_URL || "https://studiomanagerpro.it").replace(/\/$/, "");
-    if (!url || !serviceKey) throw new Error("Configurazione Supabase mancante");
+    if (!url || !anonKey || !serviceKey) throw new Error("Configurazione Supabase mancante");
 
-    const supabase = createClient(url, serviceKey, { auth: { persistSession: false, autoRefreshToken: false } });
+    // La password viene verificata direttamente da Supabase Auth: non viene letta o memorizzata da SMP.
+    const authClient = createClient(url, anonKey, {
+      auth: { persistSession: false, autoRefreshToken: false },
+    });
+    const { data: authData, error: authError } = await authClient.auth.signInWithPassword({ email, password });
+    if (authError || !authData.session || !authData.user) {
+      return NextResponse.json({ error: "Credenziali o codice fiscale non corretti" }, { status: 401 });
+    }
 
-    const { data: utente, error: utenteError } = await supabase
+    const admin = createClient(url, serviceKey, {
+      auth: { persistSession: false, autoRefreshToken: false },
+    });
+
+    const { data: utente, error: utenteError } = await admin
       .from("tbutenti")
-      .select("id, studio_id, tipo_utente, attivo, email")
+      .select("id,studio_id,tipo_utente,attivo,email")
       .ilike("email", email)
       .maybeSingle();
 
-    // Risposta volutamente neutra: non rivela se l'indirizzo esiste nel sistema.
     if (utenteError || !utente?.id || !utente.studio_id || !utente.attivo || utente.tipo_utente !== "Admin") {
-      return NextResponse.json({ ok: true });
+      return NextResponse.json({ error: "Credenziali o codice fiscale non corretti" }, { status: 401 });
     }
 
-    const { data: studio } = await supabase
+    const { data: studio, error: studioError } = await admin
       .from("tbstudio")
-      .select("id, licenze_bypass")
+      .select("id,codice_fiscale,licenze_bypass")
       .eq("id", utente.studio_id)
       .maybeSingle();
 
-    if (!studio?.id || studio.licenze_bypass) return NextResponse.json({ ok: true });
+    const cfStudio = String(studio?.codice_fiscale || "").trim().toUpperCase().replace(/\s+/g, "");
+    if (studioError || !studio?.id || studio.licenze_bypass || !cfStudio || cfStudio !== codiceFiscale) {
+      return NextResponse.json({ error: "Credenziali o codice fiscale non corretti" }, { status: 401 });
+    }
 
-    const { data, error } = await supabase.auth.admin.generateLink({
-      type: "magiclink",
-      email,
-      options: {
-        redirectTo: `${publicUrl}/abbonamento/gestione`,
-      },
+    return NextResponse.json({
+      ok: true,
+      access_token: authData.session.access_token,
+      refresh_token: authData.session.refresh_token,
     });
-
-    if (error || !data?.properties?.action_link) throw error || new Error("Link di accesso non generato");
-
-    // Supabase invia normalmente i magic link tramite signInWithOtp; generateLink genera il link
-    // senza inviarlo. Per non dipendere da un provider email del sito, usiamo l'endpoint Auth OTP.
-    const authClient = createClient(url, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || serviceKey, {
-      auth: { persistSession: false, autoRefreshToken: false },
-    });
-    const { error: otpError } = await authClient.auth.signInWithOtp({
-      email,
-      options: {
-        shouldCreateUser: false,
-        emailRedirectTo: `${publicUrl}/abbonamento/gestione`,
-      },
-    });
-    if (otpError) throw otpError;
-
-    return NextResponse.json({ ok: true });
   } catch (error: any) {
     console.error("abbonamento/accesso:", error);
-    return NextResponse.json({ error: "Impossibile inviare il link di accesso in questo momento" }, { status: 500 });
+    return NextResponse.json({ error: "Accesso alla gestione abbonamento non disponibile in questo momento" }, { status: 500 });
   }
 }
