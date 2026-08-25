@@ -29,6 +29,10 @@ export default function AbbonamentoPage() {
       const supabase = createClient(url, key);
       const { error: sessionError } = await supabase.auth.setSession({ access_token: data.access_token, refresh_token: data.refresh_token });
       if (sessionError) throw sessionError;
+
+      // Sessione dedicata all'area abbonamento: evita qualsiasi dipendenza dal vecchio magic link.
+      sessionStorage.setItem("smp_subscription_access_token", data.access_token);
+      sessionStorage.setItem("smp_subscription_refresh_token", data.refresh_token);
       window.location.href = "/abbonamento/gestione";
     } catch (err: any) { setError(err?.message || "Errore durante l’accesso"); }
     finally { setLoading(false); }
