@@ -39,8 +39,23 @@ export default function Accesso() {
             </a>
           </article>
 
-          <article className="accessCard futureAccess">
+          <article className="accessCard activeAccess">
             <span className="accessNumber">02</span>
+            <div>
+              <p className="accessType">ABBONAMENTO E PAGAMENTI</p>
+              <h2>Gestione abbonamento</h2>
+              <p>
+                Aggiorna il metodo di pagamento, recupera un insoluto o riattiva
+                Studio Manager Pro anche quando l’accesso al gestionale è sospeso.
+              </p>
+            </div>
+            <a href="/abbonamento" className="accessButton">
+              Gestisci abbonamento <span>→</span>
+            </a>
+          </article>
+
+          <article className="accessCard futureAccess">
+            <span className="accessNumber">03</span>
             <div>
               <p className="accessType">PORTALE DEDICATO</p>
               <h2>Area cliente</h2>
