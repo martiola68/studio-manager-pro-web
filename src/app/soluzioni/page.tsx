@@ -37,8 +37,8 @@ const FUNZIONI_COMUNI = [
 ];
 
 const piani: Piano[] = [
-  { codice: "essential", nome: "Essential", prezzo: "149 €", maxUtenti: 3, maxAnagrafiche: 25 },
-  { codice: "professional", nome: "Professional", prezzo: "199 €", maxUtenti: 6, maxAnagrafiche: 50 },
+  { codice: "essential", nome: "Essential", prezzo: "149 €", maxUtenti: 3, maxAnagrafiche: 50 },
+  { codice: "professional", nome: "Professional", prezzo: "199 €", maxUtenti: 6, maxAnagrafiche: 75 },
   { codice: "studio_plus", nome: "Studio Plus", prezzo: "249 €", maxUtenti: 12, maxAnagrafiche: 100 },
 ];
 
@@ -46,16 +46,24 @@ const moduli = [
   {
     nome: "Antiriciclaggio",
     prezzo: "149 € / mese",
-    descrizione: "Modulo completo per l'adeguata verifica e la gestione operativa AML: AV1, AV2, AV4, fascicolo cliente, rappresentanti, documentazione, valutazioni e rinnovi. Integra il controllo del titolare effettivo con soci, organi sociali, partecipazioni e gruppi societari già presenti nelle anagrafiche.",
+    descrizione: "Modulo completo per l'adeguata verifica e la gestione operativa AML: AV1, AV2, AV4, fascicolo cliente, rappresentanti, documentazione, valutazioni e rinnovi. Integra il riconoscimento e il controllo del titolare effettivo tramite soci, organi sociali, partecipazioni e gruppi societari già presenti nelle anagrafiche, con gestione dello storico delle variazioni.",
   },
-  { nome: "Revisione e controllo", prezzo: "199 € / mese", descrizione: "Checklist, verifiche, carte di lavoro, controlli periodici e follow-up delle attività di revisione." },
-  { nome: "Controllo di gestione", prezzo: "129 € / mese", descrizione: "Importazione dati contabili, mappature per società, indicatori, analisi trimestrali e report gestionali." },
+  {
+    nome: "Revisione e controllo",
+    prezzo: "199 € / mese",
+    descrizione: "Gestione delle attività di revisione e controllo con checklist strutturate, verifiche periodiche, carte di lavoro, follow-up automatici, tracciamento delle attività e supporto ai processi di controllo professionale.",
+  },
+  {
+    nome: "Controllo di gestione",
+    prezzo: "129 € / mese",
+    descrizione: "Importazione dei dati contabili, mappatura dei conti per singola società, indicatori economici e patrimoniali, analisi trimestrali, confronti temporali e report gestionali per il controllo dell'andamento aziendale.",
+  },
   { nome: "Pacchetto +3 utenti", prezzo: "45 € / mese", descrizione: "Aggiunge 3 utenti al limite previsto dal piano sottoscritto." },
   { nome: "Pacchetto +5 utenti", prezzo: "69 € / mese", descrizione: "Aggiunge 5 utenti al limite previsto dal piano sottoscritto." },
-  { nome: "Pacchetto +500 anagrafiche", prezzo: "49 € / mese", descrizione: "Aumenta di 500 il limite delle anagrafiche clienti attive previste dal piano sottoscritto." },
+  { nome: "Pacchetto +500 clienti attivi", prezzo: "99 € / mese", descrizione: "Aumenta di 500 il limite delle anagrafiche con cliente attivo previste dal piano. Il pacchetto è cumulabile per ulteriori blocchi da 500." },
 ];
 
-const NOTA_PIANI = "Le funzionalità operative sono identiche per Essential, Professional e Studio Plus. Cambiano esclusivamente il numero massimo di utenti e di anagrafiche clienti comprese nel piano. I moduli specialistici Antiriciclaggio, Revisione e controllo e Controllo di gestione sono attivabili separatamente.";
+const NOTA_PIANI = "Le funzionalità operative sono identiche per Essential, Professional e Studio Plus. Cambiano esclusivamente il numero massimo di utenti e di anagrafiche clienti attive comprese nel piano. Soci, amministratori, sindaci, revisori, rappresentanti e altri nominativi non classificati come clienti attivi non consumano il plafond. I moduli specialistici Antiriciclaggio, Revisione e controllo e Controllo di gestione sono attivabili separatamente.";
 
 function Brand() {
   return <span className="brand"><img src="https://raw.githubusercontent.com/martiola68/studio-manager-pro/main/public/LogoSMP_.png" alt="" className="brandLogo" /><span className="brandWords"><strong>Studio Manager Pro</strong><small>Sistema Gestionale Integrato</small></span></span>;
@@ -82,7 +90,7 @@ export default function SoluzioniPage() {
     <section className="statement" style={{ paddingTop: 84 }}>
       <p className="eyebrow">SOLUZIONI E PREZZI</p>
       <h2>Stesse funzionalità.<br />La capacità giusta per il tuo studio.</h2>
-      <div className="statementText"><p>Tutti i piani comprendono lo stesso ecosistema operativo Studio Manager Pro. La scelta dipende esclusivamente dal numero di utenti e di anagrafiche clienti necessarie.</p><p>Il contratto ha durata annuale con corrispettivo rateizzato mensilmente, salvo quanto previsto nelle condizioni contrattuali.</p></div>
+      <div className="statementText"><p>Tutti i piani comprendono lo stesso ecosistema operativo Studio Manager Pro. La scelta dipende esclusivamente dal numero di utenti e di clienti attivi necessari.</p><p>Il contratto ha durata annuale con corrispettivo rateizzato mensilmente, salvo quanto previsto nelle condizioni contrattuali.</p></div>
     </section>
 
     <section className="solutionsSection" style={{ paddingTop: 30 }}>
@@ -93,8 +101,8 @@ export default function SoluzioniPage() {
           <p style={{ minHeight: 56 }}>Tutte le funzionalità di Studio Manager Pro, con capacità dimensionata sul piano scelto.</p>
           <div style={{ display: "grid", gap: 10, margin: "20px 0 24px", paddingTop: 18, borderTop: index === 1 ? "1px solid rgba(255,255,255,.18)" : "1px solid #dce5ef" }}>
             <span style={{ fontSize: 15, fontWeight: 850, lineHeight: 1.45 }}>✓ Fino a {piano.maxUtenti} utenti registrati</span>
-            <span style={{ fontSize: 15, fontWeight: 850, lineHeight: 1.45 }}>✓ Fino a {piano.maxAnagrafiche} anagrafiche clienti attive</span>
-            <span style={{ fontSize: 13, lineHeight: 1.5, opacity: .82 }}>Capacità ampliabile con i pacchetti aggiuntivi disponibili.</span>
+            <span style={{ fontSize: 15, fontWeight: 850, lineHeight: 1.45 }}>✓ Fino a {piano.maxAnagrafiche} clienti attivi</span>
+            <span style={{ fontSize: 13, lineHeight: 1.5, opacity: .82 }}>Nominativi non clienti illimitati · capacità clienti ampliabile con pacchetti aggiuntivi.</span>
           </div>
           <button type="button" onClick={() => setPianoAperto(piano)} style={{ alignSelf: "flex-start", marginTop: "auto", padding: 0, border: 0, background: "transparent", color: "inherit", cursor: "pointer", font: "inherit", fontSize: 14, fontWeight: 850, textDecoration: "underline", textUnderlineOffset: 4 }}>Scopri tutte le funzionalità →</button>
           <a href={`/sottoscrizione?piano=${piano.codice}`} style={{ marginTop: 18 }}><b>Sottoscrivi {piano.nome} →</b></a>
@@ -128,7 +136,8 @@ export default function SoluzioniPage() {
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(2,minmax(0,1fr))", gap: 14, margin: "26px 0", padding: 18, borderRadius: 14, background: "#f3f7fb" }}>
           <div style={{ fontSize: 14, fontWeight: 900, lineHeight: 1.45 }}>✓ Fino a {pianoAperto.maxUtenti} utenti registrati</div>
-          <div style={{ fontSize: 14, fontWeight: 900, lineHeight: 1.45 }}>✓ Fino a {pianoAperto.maxAnagrafiche} anagrafiche clienti attive</div>
+          <div style={{ fontSize: 14, fontWeight: 900, lineHeight: 1.45 }}>✓ Fino a {pianoAperto.maxAnagrafiche} clienti attivi</div>
+          <div style={{ gridColumn: "1 / -1", fontSize: 13, lineHeight: 1.5, color: "#52647a" }}>Soci, amministratori, sindaci, revisori, rappresentanti e altri nominativi non classificati come clienti attivi non vengono conteggiati nel limite.</div>
         </div>
         <div style={{ display: "grid", gap: 0, borderTop: "1px solid #dce5ef" }}>
           {FUNZIONI_COMUNI.map((funzione) => <div key={funzione} style={{ display: "grid", gridTemplateColumns: "24px 1fr", gap: 10, padding: "13px 0", borderBottom: "1px solid #e7edf4", lineHeight: 1.55 }}><span style={{ color: "#0879c8", fontWeight: 950 }}>✓</span><span>{funzione}</span></div>)}
