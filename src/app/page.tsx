@@ -20,6 +20,15 @@ const advantages = [
   ["Cresce insieme allo studio", "Architettura multi-studio, moduli integrati e configurazioni indipendenti accompagnano strutture di dimensioni diverse."],
 ];
 
+const homePlans = [
+  { code: "essential", name: "Essential", price: "149 €", users: 3, clients: 50 },
+  { code: "professional", name: "Professional", price: "199 €", users: 6, clients: 75 },
+  { code: "studio_plus", name: "Studio Plus", price: "249 €", users: 12, clients: 100 },
+  { code: "full_unlimited", name: "Full Unlimited", price: "549 €", full: true },
+];
+
+const SUBSCRIPTION_BASE = "https://abbonamenti.studiomanagerpro.it/attivazione-studio";
+
 function Brand() {
   return <span className="brand"><img src="https://raw.githubusercontent.com/martiola68/studio-manager-pro/main/public/LogoSMP_.png" alt="" className="brandLogo" /><span className="brandWords"><strong>Studio Manager Pro</strong><small>Sistema Gestionale Integrato</small></span></span>;
 }
@@ -40,7 +49,22 @@ export default function Home() {
 
     <section className="securitySection"><div className="securityPanel"><p className="eyebrow">UNA BASE SOLIDA PER IL LAVORO</p><h2>Accesso controllato.<br />Dati separati. Ruoli definiti.</h2><p>L’architettura multi-tenant separa gli ambienti di ciascuno studio. Utenti, ruoli e permessi rendono visibile ogni funzione alle persone autorizzate, mentre log e storico supportano la tracciabilità.</p><div className="securityTags"><span>Multi-tenant</span><span>Ruoli e permessi</span><span>Tracciabilità</span><span>Cloud</span></div></div><div className="architecture"><div className="archTop">STUDIO MANAGER PRO CLOUD</div><div className="archRows"><div><span>Studio A</span><small>Ambiente separato</small></div><div><span>Studio B</span><small>Ambiente separato</small></div><div><span>Studio C</span><small>Ambiente separato</small></div></div><div className="archBase"><b>Dati · Processi · Documenti</b><span>Protezione e continuità operativa</span></div></div></section>
 
-    <section className="solutionsSection" id="piani"><div className="sectionHead"><div><p className="eyebrow">SOLUZIONI</p><h2>La configurazione giusta<br />per ogni fase dello studio.</h2></div><p>Tre piani per accompagnare realtà diverse, con sottoscrizione online e pagamento mensile nell’ambito del periodo contrattuale.</p></div><div className="solutionGrid"><article><span>ESSENTIAL</span><h3>149 € / mese</h3><p>La base operativa per centralizzare clienti, agenda, promemoria e scadenze.</p><a href="/offerte"><b>Vedi offerta →</b></a></article><article className="solutionFeatured"><span>PROFESSIONAL</span><h3>199 € / mese</h3><p>Moduli professionali, automazioni e controllo completo dei processi dello studio.</p><a href="/offerte"><b>Vedi offerta →</b></a></article><article><span>STUDIO PLUS</span><h3>249 € / mese</h3><p>Configurazione estesa per strutture articolate, più utenti, settori e responsabilità.</p><a href="/offerte"><b>Vedi offerta →</b></a></article></div><div className="heroActions" style={{ marginTop: 36 }}><a className="primaryButton" href="/offerte">Apri tutte le offerte e sottoscrivi <span>→</span></a></div></section>
+    <section className="solutionsSection" id="piani">
+      <div className="sectionHead"><div><p className="eyebrow">SOLUZIONI</p><h2>La configurazione giusta<br />per ogni fase dello studio.</h2></div><p>Quattro configurazioni per accompagnare realtà diverse, con sottoscrizione online e pagamento mensile nell’ambito del periodo contrattuale.</p></div>
+      <div className="solutionGrid" style={{gridTemplateColumns:"repeat(4,minmax(0,1fr))"}}>
+        {homePlans.map((p) => <article key={p.code} className={p.full ? "solutionFeatured" : ""} style={{display:"flex",flexDirection:"column"}}>
+          <span style={{fontSize:17,fontWeight:950,letterSpacing:".13em"}}>{p.name.toUpperCase()}</span>
+          <h3 style={{fontSize:34,marginTop:54}}>{p.price} / mese</h3>
+          <p style={{minHeight:76}}>{p.full ? "Tutto Studio Manager Pro, tutti i moduli specialistici e nessun limite di capacità." : "Tutte le funzionalità operative di Studio Manager Pro, con capacità dimensionata sul piano scelto."}</p>
+          <div style={{display:"grid",gap:10,margin:"20px 0 24px",paddingTop:18,borderTop:p.full?"1px solid rgba(255,255,255,.18)":"1px solid #dce5ef"}}>
+            {p.full ? <><span style={{fontSize:15,fontWeight:850}}>✓ Utenti illimitati</span><span style={{fontSize:15,fontWeight:850}}>✓ Clienti attivi illimitati</span><span style={{fontSize:15,fontWeight:850}}>✓ AML + Revisione + Controllo di gestione inclusi</span></> : <><span style={{fontSize:15,fontWeight:850}}>✓ Fino a {p.users} utenti registrati</span><span style={{fontSize:15,fontWeight:850}}>✓ Fino a {p.clients} clienti attivi</span><span style={{fontSize:13,opacity:.82}}>Nominativi non clienti illimitati · capacità ampliabile con pacchetti aggiuntivi.</span></>}
+          </div>
+          <a href="/soluzioni" style={{alignSelf:"flex-start",marginTop:"auto",padding:0,color:"inherit",fontSize:14,fontWeight:850,textDecoration:"underline",textUnderlineOffset:4}}>Scopri tutte le funzionalità →</a>
+          <a href={`${SUBSCRIPTION_BASE}?piano=${encodeURIComponent(p.code)}`} target="_blank" rel="noopener noreferrer" style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:12,marginTop:24,padding:"15px 18px",borderRadius:12,background:p.full?"#fff":"#0783b6",color:p.full?"#075f87":"#fff",fontSize:15,fontWeight:950,textDecoration:"none",boxShadow:"0 8px 22px rgba(7,131,182,.20)"}}>Sottoscrivi {p.name}<span style={{fontSize:19}}>→</span></a>
+        </article>)}
+      </div>
+      <div className="heroActions" style={{ marginTop: 36 }}><a className="primaryButton" href="/offerte">Apri tutte le offerte e sottoscrivi <span>→</span></a></div>
+    </section>
 
     <section className="accessBanner"><div><p className="eyebrow lightEyebrow">SEI GIÀ UN UTENTE SMP?</p><h2>Il tuo ambiente di lavoro è nell’Area riservata.</h2></div><div className="accessActions"><a className="installBannerButton" href="https://app.studiomanagerpro.it/login?install=1">Installa l’app <span>↓</span></a><a className="primaryButton whiteButton" href="/accesso">Vai all’Area riservata <span>→</span></a></div></section>
 
