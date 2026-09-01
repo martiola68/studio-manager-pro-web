@@ -54,17 +54,19 @@ export default function Accesso() {
             </a>
           </article>
 
-          <article className="accessCard futureAccess">
+          <article className="accessCard activeAccess">
             <span className="accessNumber">03</span>
             <div>
-              <p className="accessType">PORTALE DEDICATO</p>
-              <h2>Area cliente</h2>
+              <p className="accessType">AMMINISTRAZIONE PIATTAFORMA</p>
+              <h2>Portale Amministrazione</h2>
               <p>
-                Il portale per inviare richieste e documenti allo studio tramite
-                credenziali dedicate.
+                Area riservata alla gestione amministrativa di Studio Manager Pro.
+                Controlla studi, licenze, pagamenti, servizi e integrità del sistema.
               </p>
             </div>
-            <span className="futureLabel">Collegamento in preparazione</span>
+            <a href="https://abbonamenti.studiomanagerpro.it/admin/login" className="accessButton">
+              Accedi al portale <span>→</span>
+            </a>
           </article>
         </div>
       </section>
