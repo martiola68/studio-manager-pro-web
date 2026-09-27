@@ -31,6 +31,7 @@ function Brand() {
   return <span className="brand"><img src="https://raw.githubusercontent.com/martiola68/studio-manager-pro/main/public/LogoSMP_.png" alt="" className="brandLogo" /><span className="brandWords"><strong>Studio Manager Pro</strong><small>Sistema Gestionale Integrato</small></span></span>;
 }
 
+// deploy trigger android direct download
 export default function Home() {
   return <main>
     <header className="topbar"><a href="#home" aria-label="Studio Manager Pro"><Brand /></a><a className="brochureHeaderButton" href="/Studio_Manager_Pro_Brochure_2026.pdf" target="_blank" rel="noopener noreferrer">Scarica la brochure <span>↓</span></a><nav aria-label="Navigazione principale"><a href="#piattaforma">Piattaforma</a><a href="#moduli">Funzioni</a><a href="#vantaggi">Potenzialità</a><a href="#piani">Soluzioni</a><a className="installLink" href="/offerte">Offerte e prezzi <span>→</span></a><a className="installLink" href="/download/android">Scarica App Android <span>→</span></a><a className="reservedLink" href="/accesso">Area riservata <span>↗</span></a></nav></header>
