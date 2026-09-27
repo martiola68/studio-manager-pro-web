@@ -334,3 +334,21 @@ footer > a { font-weight: 800; }
   .accessCopy h1 { font-size: 46px; }
   .accessFooter { padding: 35px 0; flex-direction: column; align-items: flex-start; }
 }
+
+.footerLinks { display:flex; align-items:center; justify-content:flex-end; gap:18px; font-weight:800; white-space:nowrap; }
+.footerLinks a:hover { color:var(--blue); }
+.legalPage { min-height:100vh; padding:0 20px 80px; background:#f4f7fa; }
+.legalTop { width:min(980px,100%); margin:0 auto; padding:34px 0 22px; }
+.legalBack { color:var(--blue2); font-size:13px; font-weight:800; }
+.legalCard { width:min(980px,100%); margin:0 auto; padding:58px 70px; background:white; border:1px solid var(--line); border-radius:18px; box-shadow:0 18px 50px rgba(13,29,52,.07); }
+.legalCard h1 { color:var(--ink); font-size:clamp(42px,6vw,64px); line-height:1; }
+.legalCard h2 { margin:38px 0 10px; color:var(--ink); font-size:21px; }
+.legalCard p { color:#526178; font-size:15px; line-height:1.8; }
+.legalCard a { color:var(--blue2); text-decoration:underline; text-underline-offset:3px; }
+.legalIntro { margin:24px 0 42px; font-size:17px !important; }
+.legalUpdated { margin-top:45px; padding-top:20px; border-top:1px solid var(--line); font-size:12px !important; }
+@media (max-width:760px) {
+  .footerLinks { flex-wrap:wrap; justify-content:flex-start; gap:12px 18px; }
+  .legalPage { padding-left:12px; padding-right:12px; }
+  .legalCard { padding:38px 24px; }
+}
