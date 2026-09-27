@@ -62,6 +62,6 @@ export default function Home() {
 
     <section className="accessBanner"><div><p className="eyebrow lightEyebrow">SEI GIÀ UN UTENTE SMP?</p><h2>Il tuo ambiente di lavoro è nell’Area riservata.</h2></div><div className="accessActions"><a className="installBannerButton" href="https://app.studiomanagerpro.it/login?install=1">Installa l’app <span>↓</span></a><a className="primaryButton whiteButton" href="/accesso">Vai all’Area riservata <span>→</span></a></div></section>
 
-    <footer><Brand /><div className="footerCenter"><p>© 2026 Studio Manager Pro. Creato da Artiola Mario.</p><small>Opera tutelata ai sensi della Legge 22 aprile 1941, n. 633, e successive modificazioni.</small></div><a href="/accesso">Area riservata</a></footer>
+    <footer><Brand /><div className="footerCenter"><p>© 2026 Studio Manager Pro. Creato da Artiola Mario.</p><small>Opera tutelata ai sensi della Legge 22 aprile 1941, n. 633, e successive modificazioni.</small></div><div className="footerLinks"><a href="/privacy">Informativa Privacy</a><a href="/cookie-policy">Cookie Policy</a><a href="/accesso">Area riservata</a></div></footer>
   </main>;
 }
