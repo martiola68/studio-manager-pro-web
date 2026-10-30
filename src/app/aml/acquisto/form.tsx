@@ -2,7 +2,7 @@
 import {useEffect,useState} from "react";
 import {useSearchParams} from "next/navigation";
 import Link from "next/link";
-import {amlPlans,getAmlPlan} from "@/lib/aml-pricing";
+import {amlPlans,getAmlPlan} from "../../../lib/aml-pricing";
 export default function AcquistoAML(){
  const params=useSearchParams();
  const selected=params.get("piano")||"professional";
