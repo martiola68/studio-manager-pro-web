@@ -1,6 +1,6 @@
 import {NextResponse} from "next/server";
 import Stripe from "stripe";
-import {getAmlPlan,getAmlPriceId,type AmlPlanId} from "@/lib/aml-pricing";
+import {getAmlPlan,getAmlPriceId,type AmlPlanId} from "../../../../lib/aml-pricing";
 export async function POST(request:Request){
  try {
   if(process.env.AML_SALES_ENABLED!=="true") return NextResponse.json({error:"Le vendite AML non sono ancora aperte: listino e attivazione in fase di collaudo."},{status:503});
