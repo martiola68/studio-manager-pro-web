@@ -3,7 +3,8 @@ import Stripe from "stripe";
 import {getAmlPlan,getAmlPriceId,type AmlPlanId} from "@/lib/aml-pricing";
 export async function POST(request:Request){
  try {
-  if(!process.env.STRIPE_SECRET_KEY) return NextResponse.json({error:"Pagamento non ancora configurato"}, {status:503});
+  if(process.env.AML_SALES_ENABLED!=="true") return NextResponse.json({error:"Le vendite AML non sono ancora aperte: listino e attivazione in fase di collaudo."},{status:503});
+  if(!process.env.STRIPE_SECRET_KEY || !process.env.STRIPE_AML_WEBHOOK_SECRET) return NextResponse.json({error:"Pagamento AML non ancora configurato"}, {status:503});
   const {plan,email,studioName,vatNumber}=await request.json();
   if(typeof plan!=="string"||!getAmlPlan(plan))return NextResponse.json({error:"Piano non valido"},{status:400});
   if(typeof email!=="string"||!/^\S+@\S+\.\S+$/.test(email)||email.length>254)return NextResponse.json({error:"Email non valida"},{status:400});
@@ -17,7 +18,6 @@ export async function POST(request:Request){
    mode:"subscription",
    line_items:[{price,quantity:1}],
    customer_email:email.toLowerCase().trim(),
-   client_reference_id:undefined,
    billing_address_collection:"required",
    tax_id_collection:{enabled:true},
    metadata:{product:"studio-manager-aml",plan,studioName:studioName.trim(),vatNumber:safeVat},
