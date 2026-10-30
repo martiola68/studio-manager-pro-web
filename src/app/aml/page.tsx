@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import styles from "./page.module.css";
-import {amlPlans} from "@/lib/aml-pricing";
+import {amlPlans} from "../../lib/aml-pricing";
 
 export const metadata: Metadata = {
   title: "Studio Manager Pro AML | Antiriciclaggio per studi professionali",
