@@ -356,3 +356,30 @@ footer > a { font-weight: 800; }
 .brochureHeaderButton{display:inline-flex;align-items:center;justify-content:center;gap:9px;margin-left:auto;padding:12px 18px;border-radius:10px;background:#f28c18;color:#fff!important;font-size:13px;font-weight:900;box-shadow:0 7px 18px rgba(242,140,24,.22);white-space:nowrap;transition:transform .18s ease,background .18s ease,box-shadow .18s ease}
 .brochureHeaderButton:hover{background:#df7808;color:#fff!important;transform:translateY(-1px);box-shadow:0 9px 22px rgba(242,140,24,.30)}
 @media(max-width:1100px){.brochureHeaderButton{padding:10px 13px;font-size:12px}}
+
+/* Applicativo AML venduto separatamente dal gestionale completo. */
+.amlStandaloneSection{padding:85px max(24px,calc((100% - 1180px)/2));background:linear-gradient(125deg,#06172f,#103e68);color:#fff}
+.amlStandaloneInner{display:grid;grid-template-columns:1.25fr .75fr;gap:50px;align-items:center}
+.amlStandaloneSection h2{font-size:clamp(42px,4.5vw,66px);line-height:1.04;letter-spacing:-.05em;margin:0}
+.amlStandaloneSection h2 span{color:#62cfff}
+.amlStandaloneLead{font-size:18px;line-height:1.75;color:#c1d8ee;max-width:600px;margin:22px 0}
+.amlStandaloneHighlights{display:flex;flex-wrap:wrap;gap:12px;color:#d7f2ff;font-size:13px}
+.amlStandaloneActions{display:flex;gap:22px;align-items:center;flex-wrap:wrap;margin-top:30px}
+.amlStandaloneSecondary{color:#aee4ff;font-size:14px;font-weight:850}
+.amlStandaloneNote{color:#95b5d2;font-size:12px;margin-top:22px}
+.amlStandalonePlans{padding:28px;border:1px solid #38648b;background:#0c2a4c;border-radius:17px}
+.amlStandalonePlans>div{display:grid;grid-template-columns:1fr auto;gap:5px 10px;padding:16px 0;border-bottom:1px solid #355473}
+.amlStandalonePlans strong{font-size:17px}.amlStandalonePlans span{grid-column:1;font-size:13px;color:#a4c1db}.amlStandalonePlans b{grid-column:2;grid-row:1/span 2;align-self:center;font-size:24px;color:#70d2ff}
+.amlStandalonePlans>a{display:inline-block;margin-top:24px;font-weight:800;color:#c9ecff}
+.amlPricingSection{padding:95px max(20px,calc((100% - 1120px)/2));background:#ecf5fd}
+.amlPricingIntro h2{font-size:clamp(38px,4.5vw,60px);letter-spacing:-.05em;margin:0}
+.amlPricingIntro>p:last-child{max-width:700px;line-height:1.75;color:#52647a}
+.amlPricingCards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;margin:36px 0 20px}
+.amlPricingCards article{border:1px solid #d0dfea;border-radius:15px;padding:28px;background:#fff;display:flex;flex-direction:column}
+.amlPricingCards article:nth-child(2){border:2px solid #0879c8}
+.amlPricingCards h3{font-size:23px;margin:0 0 10px}.amlPricingCards p{color:#60748b}
+.amlPricingCards strong{font-size:32px;margin:14px 0}.amlPricingCards small{font-size:13px;color:#6b7b8e;font-weight:500}
+.amlPricingCards a{margin-top:auto;padding:12px;border-radius:8px;background:#0d6db1;color:#fff;text-align:center;font-weight:800}
+.amlPricingFoot{font-size:13px;color:#65758b;line-height:1.65}
+.amlPricingDetail{display:inline-block;margin-top:18px;color:#075f9f;font-weight:850;text-decoration:underline;text-underline-offset:4px}
+@media(max-width:850px){.amlStandaloneInner{grid-template-columns:1fr}.amlPricingCards{grid-template-columns:1fr}}
