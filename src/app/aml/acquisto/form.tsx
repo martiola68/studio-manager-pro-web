@@ -23,9 +23,9 @@ export default function AcquistoAML(){
   <div style={{maxWidth:680,margin:"auto",background:"#fff",border:"1px solid #d7e3f2",borderRadius:16,padding:32}}>
   <Link href="/aml#prezzi">← Torna ai piani</Link>
   <h1>Attivazione Studio Manager Pro AML</h1>
-  <p>Seleziona il numero di pratiche e inserisci i dati dello studio. Prezzi annuali IVA esclusa.</p>
+  <p>Seleziona il numero di pratiche e inserisci i dati dello studio. Prezzi annuali con IVA non applicata (regime forfettario).</p>
   <form onSubmit={submit} style={{display:"grid",gap:18}}>
-   <label>Piano annuale<select value={plan} onChange={e=>setPlan(e.target.value)} style={{display:"block",width:"100%",padding:12,marginTop:6}}>{amlPlans.map(p=><option key={p.id} value={p.id}>{p.name} — fino a {p.maxPractices} pratiche — € {p.annualEur}/anno + IVA</option>)}</select></label>
+   <label>Piano annuale<select value={plan} onChange={e=>setPlan(e.target.value)} style={{display:"block",width:"100%",padding:12,marginTop:6}}>{amlPlans.map(p=><option key={p.id} value={p.id}>{p.name} — fino a {p.maxPractices} pratiche — € {p.annualEur}/anno</option>)}</select></label>
    <label>Denominazione studio<input required minLength={3} maxLength={180} value={studioName} onChange={e=>setStudioName(e.target.value)} style={{display:"block",width:"100%",padding:12,marginTop:6,border:"1px solid #b5c7dc",borderRadius:6}}/></label>
    <label>Email amministrativa<input type="email" required value={email} onChange={e=>setEmail(e.target.value)} style={{display:"block",width:"100%",padding:12,marginTop:6,border:"1px solid #b5c7dc",borderRadius:6}}/></label>
    <label>Partita IVA (facoltativa)<input value={vatNumber} maxLength={32} onChange={e=>setVatNumber(e.target.value)} style={{display:"block",width:"100%",padding:12,marginTop:6,border:"1px solid #b5c7dc",borderRadius:6}}/></label>
