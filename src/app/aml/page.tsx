@@ -75,18 +75,18 @@ export default function AMLCommercialPage() {
         <div className={styles.sectionIntro}>
           <p className={styles.eyebrow}>LICENZE PER VOLUME DI PRATICHE</p>
           <h2>Un piano adatto al tuo studio.</h2>
-          <p>Canone annuale in funzione del numero massimo di pratiche AML gestibili. Prezzi proposti, IVA esclusa, soggetti a conferma prima dell'avvio commerciale.</p>
+          <p>Canone annuale in funzione del numero massimo di pratiche AML gestibili. Prezzi annuali. IVA non applicata ai sensi dell’art. 1, comma 58, L. 190/2014 (regime forfettario).</p>
         </div>
         <div className={styles.pricingGrid}>
           {amlPlans.map(plan=><article className={styles.priceCard} key={plan.id}>
             <h3>{plan.name}</h3>
             <p className={styles.practiceCap}>Fino a <strong>{plan.maxPractices}</strong> pratiche</p>
-            <div className={styles.priceAmount}>€ {plan.annualEur}<span> /anno + IVA</span></div>
+            <div className={styles.priceAmount}>€ {plan.annualEur}<span> /anno</span></div>
             <ul>{plan.features.map(feature=><li key={feature}>{feature}</li>)}</ul>
             <a className={styles.priceAction} href={"/aml/acquisto?piano="+plan.id}>Seleziona piano</a>
           </article>)}
         </div>
-        <p className={styles.pricingNote}>L'acquisto e l'attivazione vengono completati solo dopo la configurazione e la verifica amministrativa della licenza. Il conteggio e l'applicazione del limite pratiche saranno operativi dopo il collaudo del sistema di licenze.</p>
+        <p className={styles.pricingNote}>L'attivazione avviene dopo la verifica del pagamento e la configurazione della licenza. Il conteggio e l'applicazione del limite pratiche saranno operativi dopo il collaudo del sistema di licenze.</p>
       </section>
       <section id="architettura" className={styles.architecture}>
         <div><p className={styles.eyebrow}>UN MOTORE, DUE ESPERIENZE</p><h2>Autonomo nell&apos;interfaccia. Condiviso nella tecnologia.</h2></div>
