@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import styles from "./page.module.css";
+import {amlPlans} from "@/lib/aml-pricing";
 
 export const metadata: Metadata = {
   title: "Studio Manager Pro AML | Antiriciclaggio per studi professionali",
@@ -37,7 +38,7 @@ export default function AMLCommercialPage() {
           <p className={styles.lead}>Il motore completo di Studio Manager Pro, dedicato ai processi AML. Pratiche, adeguata verifica, fascicoli, utenti, Microsoft 365 e alert generali: la stessa tecnologia, un ambiente di lavoro focalizzato.</p>
           <div className={styles.heroActions}>
             <a className={styles.primaryButton} href="#funzioni">Esplora le funzionalità <span aria-hidden="true">→</span></a>
-            <a className={styles.secondaryButton} href="#architettura">Come funziona</a>
+            <a className={styles.secondaryButton} href="#prezzi">Piani e prezzi</a>
           </div>
           <div className={styles.heroFoot}><span>Unico backend SMP</span><i/> <span>Dati e funzioni condivisi</span><i/> <span>Interfaccia AML dedicata</span></div>
         </div>
@@ -69,6 +70,23 @@ export default function AMLCommercialPage() {
           <p>Un&apos;interfaccia autonoma, costruita attorno ai moduli e alle procedure antiriciclaggio del gestionale originale.</p>
         </div>
         <div className={styles.functionGrid}>{funzioni.map(f=><article className={styles.functionCard} key={f.n}><span>{f.n}</span><h3>{f.title}</h3><p>{f.text}</p></article>)}</div>
+      </section>
+      <section id="prezzi" className={styles.pricing}>
+        <div className={styles.sectionIntro}>
+          <p className={styles.eyebrow}>LICENZE PER VOLUME DI PRATICHE</p>
+          <h2>Un piano adatto al tuo studio.</h2>
+          <p>Canone annuale in funzione del numero massimo di pratiche AML gestibili. Prezzi proposti, IVA esclusa, soggetti a conferma prima dell'avvio commerciale.</p>
+        </div>
+        <div className={styles.pricingGrid}>
+          {amlPlans.map(plan=><article className={styles.priceCard} key={plan.id}>
+            <h3>{plan.name}</h3>
+            <p className={styles.practiceCap}>Fino a <strong>{plan.maxPractices}</strong> pratiche</p>
+            <div className={styles.priceAmount}>€ {plan.annualEur}<span> /anno + IVA</span></div>
+            <ul>{plan.features.map(feature=><li key={feature}>{feature}</li>)}</ul>
+            <a className={styles.priceAction} href={"/aml/acquisto?piano="+plan.id}>Seleziona piano</a>
+          </article>)}
+        </div>
+        <p className={styles.pricingNote}>L'acquisto e l'attivazione vengono completati solo dopo la configurazione e la verifica amministrativa della licenza. Il conteggio e l'applicazione del limite pratiche saranno operativi dopo il collaudo del sistema di licenze.</p>
       </section>
       <section id="architettura" className={styles.architecture}>
         <div><p className={styles.eyebrow}>UN MOTORE, DUE ESPERIENZE</p><h2>Autonomo nell&apos;interfaccia. Condiviso nella tecnologia.</h2></div>
