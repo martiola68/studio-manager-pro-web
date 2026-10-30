@@ -383,3 +383,13 @@ footer > a { font-weight: 800; }
 .amlPricingFoot{font-size:13px;color:#65758b;line-height:1.65}
 .amlPricingDetail{display:inline-block;margin-top:18px;color:#075f9f;font-weight:850;text-decoration:underline;text-underline-offset:4px}
 @media(max-width:850px){.amlStandaloneInner{grid-template-columns:1fr}.amlPricingCards{grid-template-columns:1fr}}
+
+/* Link commerciali distinti: AML PRO evidenziato, SMP invariato. */
+.topbar nav .amlNavLink,.topbar nav .smpNavLink{display:inline-flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:2px;min-height:53px;line-height:1.15;white-space:nowrap}
+.topbar nav .amlNavLink{padding:9px 15px;border:2px solid #c32342;border-radius:9px;background:#ffe8ed;color:#b61935;font-weight:900;box-shadow:0 0 0 1px #ffd6df}
+.topbar nav .amlNavLink:hover{background:#ffdae4;color:#a4112c;border-color:#a4112c}
+.topbar nav .amlNavLink strong,.topbar nav .smpNavLink strong{font-size:14px;font-weight:900}
+.topbar nav .amlNavLink span,.topbar nav .smpNavLink span{font-size:11px;font-weight:800}
+.topbar nav .smpNavLink{padding:9px 15px}
+@media(max-width:1050px){.topbar nav a.amlNavLink,.topbar nav a.smpNavLink{display:inline-flex}}
+@media(max-width:720px){.topbar nav{gap:6px}.topbar nav .amlNavLink,.topbar nav .smpNavLink{padding:8px;font-size:11px}.topbar nav .amlNavLink strong,.topbar nav .smpNavLink strong{font-size:11px}.topbar nav .amlNavLink span,.topbar nav .smpNavLink span{font-size:9px}}
