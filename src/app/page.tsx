@@ -34,7 +34,7 @@ function Brand() {
 // deploy trigger android direct download
 export default function Home() {
   return <main>
-    <header className="topbar"><a href="#home" aria-label="Studio Manager Pro"><Brand /></a><a className="brochureHeaderButton" href="/Studio_Manager_Pro_Brochure_2026.pdf" target="_blank" rel="noopener noreferrer">Scarica la brochure <span>↓</span></a><nav aria-label="Navigazione principale"><a href="#piattaforma">Piattaforma</a><a href="#moduli">Funzioni</a><a href="#vantaggi">Potenzialità</a><a href="#piani">Soluzioni</a><a className="installLink" href="/offerte">Offerte e prezzi <span>→</span></a><a className="reservedLink" href="/accesso">Area riservata <span>↗</span></a></nav></header>
+    <header className="topbar"><a href="#home" aria-label="Studio Manager Pro"><Brand /></a><a className="brochureHeaderButton" href="/Studio_Manager_Pro_Brochure_2026.pdf" target="_blank" rel="noopener noreferrer">Scarica la brochure <span>↓</span></a><nav aria-label="Navigazione principale"><a href="#piattaforma">Piattaforma</a><a href="#moduli">Funzioni</a><a href="#vantaggi">Potenzialità</a><a href="#piani">Soluzioni</a><a href="#aml-autonomo">AML autonomo</a><a className="installLink" href="/offerte">Offerte e prezzi <span>→</span></a><a className="reservedLink" href="/accesso">Area riservata <span>↗</span></a></nav></header>
 
     <section className="heroV2" id="home"><div className="heroGlow one" /><div className="heroGlow two" /><div className="heroMain"><p className="eyebrow lightEyebrow">PIATTAFORMA DIGITALE PER STUDI PROFESSIONALI</p><h1>Il lavoro dello studio.<br /><em>Finalmente connesso.</em></h1><p className="heroLead">Studio Manager Pro porta persone, clienti, scadenze e processi in un unico sistema gestionale. Non un insieme di funzioni isolate, ma una piattaforma costruita per governare davvero lo studio.</p><div className="heroActions"><a className="primaryButton whiteButton" href="/offerte">Scopri offerte e prezzi <span>→</span></a><a className="textButton" href="#moduli">Esplora la piattaforma <span>↓</span></a></div><div className="heroProof"><span>Cloud</span><i /><span>Multi-studio</span><i /><span>Accesso sicuro</span><i /><span>Progettato in Italia</span></div></div><div className="productStage" aria-label="Ecosistema Studio Manager Pro"><div className="stageGrid" /><div className="logoCore"><img src="https://raw.githubusercontent.com/martiola68/studio-manager-pro/main/public/LogoSMP_.png" alt="Logo Studio Manager Pro" /><strong>Studio Manager Pro</strong><span>Sistema Gestionale Integrato</span></div><div className="floatingModule fm1"><b>SCADENZE</b><span>Motore alert centralizzato</span></div><div className="floatingModule fm2"><b>PRATICHE</b><span>Processi e documenti</span></div><div className="floatingModule fm3"><b>CONTROLLO</b><span>Dati, verifiche e report</span></div><div className="floatingModule fm4"><b>CLIENTI</b><span>Anagrafiche collegate</span></div><div className="signal s1" /><div className="signal s2" /><div className="signal s3" /></div></section>
 
@@ -58,6 +58,24 @@ export default function Home() {
             {p.full ? <><span style={{fontSize:15,fontWeight:850}}>✓ Utenti illimitati</span><span style={{fontSize:15,fontWeight:850}}>✓ Clienti attivi illimitati</span><span style={{fontSize:15,fontWeight:850}}>✓ Moduli specialistici inclusi</span></> : <><span style={{fontSize:15,fontWeight:850}}>✓ Fino a {p.users} utenti registrati</span><span style={{fontSize:15,fontWeight:850}}>✓ Fino a {p.clients} clienti attivi</span><span style={{fontSize:13,opacity:.82}}>Nominativi non clienti illimitati · capacità ampliabile.</span></>}
           </div>
         </article>)}
+      </div>
+    </section>
+
+    <section className="amlStandaloneSection" id="aml-autonomo">
+      <div className="amlStandaloneInner">
+        <div><p className="eyebrow lightEyebrow">NUOVO APPLICATIVO AUTONOMO</p>
+          <h2>Studio Manager Pro <span>AML</span></h2>
+          <p className="amlStandaloneLead">Tutto l’antiriciclaggio professionale in un applicativo dedicato, disponibile anche senza acquistare il gestionale completo.</p>
+          <div className="amlStandaloneHighlights"><span>✓ AV1 · AV2 · AV4</span><span>✓ Fascicoli e documenti</span><span>✓ Alert AML</span><span>✓ Microsoft 365</span></div>
+          <div className="amlStandaloneActions"><a className="primaryButton whiteButton" href="/aml">Scopri Studio Manager Pro AML →</a><a className="amlStandaloneSecondary" href="/aml#prezzi">Piani da 250 € / anno →</a></div>
+          <p className="amlStandaloneNote">IVA non applicata · Regime forfettario. Vendita online in fase di attivazione.</p>
+        </div>
+        <div className="amlStandalonePlans"><p className="eyebrow lightEyebrow">LICENZA ANNUALE</p>
+          <div><strong>Starter</strong><span>50 pratiche</span><b>250 €</b></div>
+          <div><strong>Professional</strong><span>200 pratiche</span><b>550 €</b></div>
+          <div><strong>Business</strong><span>500 pratiche</span><b>950 €</b></div>
+          <a href="/aml#prezzi">Confronta tutti i piani →</a>
+        </div>
       </div>
     </section>
 
