@@ -23,7 +23,7 @@ const advantages = [
 const homePlans = [
   { code: "essential", name: "Essential", users: 3, clients: 50 },
   { code: "professional", name: "Professional", users: 6, clients: 75 },
-  { code: "studio_plus", name: "Studio Plus", users: 12, clients: 100 },
+  
   { code: "full_unlimited", name: "Full Unlimited", full: true },
 ];
 
@@ -50,12 +50,12 @@ export default function Home() {
 
     <section className="solutionsSection" id="piani">
       <div className="sectionHead"><div><p className="eyebrow">SOLUZIONI</p><h2>La configurazione giusta<br />per ogni fase dello studio.</h2></div><p>Quattro configurazioni per accompagnare studi con esigenze e dimensioni diverse. Il dettaglio completo dell’offerta è disponibile nella pagina dedicata.</p></div>
-      <div className="solutionGrid" style={{gridTemplateColumns:"repeat(4,minmax(0,1fr))"}}>
+      <div className="solutionGrid" style={{gridTemplateColumns:"repeat(auto-fit,minmax(240px,1fr))"}}>
         {homePlans.map((p) => <article key={p.code} className={p.full ? "solutionFeatured" : ""} style={{display:"flex",flexDirection:"column"}}>
           <span style={{fontSize:17,fontWeight:950,letterSpacing:".13em"}}>{p.name.toUpperCase()}</span>
-          <p style={{marginTop:44,minHeight:76}}>{p.full ? "La configurazione completa di Studio Manager Pro, con tutti i moduli specialistici e capacità senza limiti." : "Lo stesso ecosistema operativo di Studio Manager Pro, dimensionato sulla capacità dello studio."}</p>
+          <p style={{marginTop:44,minHeight:76}}>{p.full ? "La configurazione completa di Studio Manager Pro, con capacità illimitata. AML PRO si acquista separatamente." : "Lo stesso ecosistema operativo di Studio Manager Pro, dimensionato sulla capacità dello studio."}</p>
           <div style={{display:"grid",gap:10,margin:"20px 0 0",paddingTop:18,borderTop:p.full?"1px solid rgba(255,255,255,.18)":"1px solid #dce5ef"}}>
-            {p.full ? <><span style={{fontSize:15,fontWeight:850}}>✓ Utenti illimitati</span><span style={{fontSize:15,fontWeight:850}}>✓ Clienti attivi illimitati</span><span style={{fontSize:15,fontWeight:850}}>✓ Moduli specialistici inclusi</span></> : <><span style={{fontSize:15,fontWeight:850}}>✓ Fino a {p.users} utenti registrati</span><span style={{fontSize:15,fontWeight:850}}>✓ Fino a {p.clients} clienti attivi</span><span style={{fontSize:13,opacity:.82}}>Nominativi non clienti illimitati · capacità ampliabile.</span></>}
+            {p.full ? <><span style={{fontSize:15,fontWeight:850}}>✓ Utenti illimitati</span><span style={{fontSize:15,fontWeight:850}}>✓ Clienti attivi illimitati</span><span style={{fontSize:15,fontWeight:850}}>✓ Revisione e Controllo di gestione inclusi · AML PRO separato</span></> : <><span style={{fontSize:15,fontWeight:850}}>✓ Fino a {p.users} utenti registrati</span><span style={{fontSize:15,fontWeight:850}}>✓ Fino a {p.clients} clienti attivi</span><span style={{fontSize:13,opacity:.82}}>Nominativi non clienti illimitati · capacità ampliabile.</span></>}
           </div>
         </article>)}
       </div>
@@ -65,15 +65,15 @@ export default function Home() {
       <div className="amlStandaloneInner">
         <div><p className="eyebrow lightEyebrow">NUOVO APPLICATIVO AUTONOMO</p>
           <h2>Studio Manager Pro <span>AML</span></h2>
-          <p className="amlStandaloneLead">Tutto l’antiriciclaggio professionale in un applicativo dedicato, disponibile anche senza acquistare il gestionale completo.</p>
+          <p className="amlStandaloneLead">L'antiriciclaggio con licenza annuale indipendente: acquistabile da solo oppure in aggiunta a qualsiasi piano SMP.</p>
           <div className="amlStandaloneHighlights"><span>✓ AV1 · AV2 · AV4</span><span>✓ Fascicoli e documenti</span><span>✓ Alert AML</span><span>✓ Microsoft 365</span></div>
-          <div className="amlStandaloneActions"><a className="primaryButton whiteButton" href="/aml">Scopri Studio Manager Pro AML →</a><a className="amlStandaloneSecondary" href="/aml#prezzi">Piani da 250 € / anno →</a></div>
+          <div className="amlStandaloneActions"><a className="primaryButton whiteButton" href="/aml">Scopri Studio Manager Pro AML →</a><a className="amlStandaloneSecondary" href="/aml#prezzi">Piani da 149 € / anno →</a></div>
           <p className="amlStandaloneNote">IVA non applicata · Regime forfettario. Vendita online in fase di attivazione.</p>
         </div>
         <div className="amlStandalonePlans"><p className="eyebrow lightEyebrow">LICENZA ANNUALE</p>
-          <div><strong>Starter</strong><span>50 pratiche</span><b>250 €</b></div>
-          <div><strong>Professional</strong><span>200 pratiche</span><b>550 €</b></div>
-          <div><strong>Business</strong><span>500 pratiche</span><b>950 €</b></div>
+          <div><strong>Starter</strong><span>50 pratiche</span><b>149 €</b></div>
+          <div><strong>Professional</strong><span>250 pratiche</span><b>249 €</b></div>
+          <div><strong>Business</strong><span>Pratiche illimitate</span><b>349 €</b></div>
           <a href="/aml#prezzi">Confronta tutti i piani →</a>
         </div>
       </div>
