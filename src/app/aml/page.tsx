@@ -80,7 +80,7 @@ export default function AMLCommercialPage() {
         <div className={styles.pricingGrid}>
           {amlPlans.map(plan=><article className={styles.priceCard} key={plan.id}>
             <h3>{plan.name}</h3>
-            <p className={styles.practiceCap}>Fino a <strong>{plan.maxPractices}</strong> pratiche</p>
+            <p className={styles.practiceCap}><strong>{plan.maxPractices === null ? "Illimitate" : `Fino a ${plan.maxPractices}`}</strong> pratiche</p>
             <div className={styles.priceAmount}>€ {plan.annualEur}<span> /anno</span></div>
             <ul>{plan.features.map(feature=><li key={feature}>{feature}</li>)}</ul>
             <a className={styles.priceAction} href={"/aml/acquisto?piano="+plan.id}>Seleziona piano</a>

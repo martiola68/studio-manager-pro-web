@@ -28,13 +28,13 @@ export async function POST(request:Request){
   add("DATI DEL SOTTOSCRITTORE",13,true);
   const labels:Record<string,string>={ragione_sociale:"Ragione sociale",codice_fiscale:"Codice fiscale",partita_iva:"Partita IVA",codice_sdi:"Codice SDI",email_studio:"Email studio",admin_nome:"Nome amministratore",admin_cognome:"Cognome amministratore",admin_email:"Email amministratore",indirizzo:"Indirizzo",citta:"Citta",provincia:"Provincia",cap:"CAP",telefono:"Telefono"};
   for(const [k,label] of Object.entries(labels))add(label+": "+clean(customer[k]));
-  y-=12;add("PIANO DI LICENZA AML",13,true);add("Piano: "+plan.name);add("Pratiche AML incluse: fino a "+plan.maxPractices);add("Corrispettivo annuale: "+money(plan.annualEur));add("IVA non applicata: regime forfettario.");y-=14;
+  y-=12;add("PIANO DI LICENZA AML",13,true);add("Piano: "+plan.name);add("Pratiche AML incluse: "+(plan.maxPractices === null ? "illimitate" : "fino a "+plan.maxPractices));add("Corrispettivo annuale: "+money(plan.annualEur));add("IVA non applicata: regime forfettario.");y-=14;
   add("AMBITO DEL SERVIZIO",13,true);
   add("Licenza annuale dell'applicativo autonomo Studio Manager Pro AML: pratiche antiriciclaggio, adeguata verifica, fascicoli, rappresentanti, documenti, alert AML e integrazione Microsoft 365. Non sono inclusi i moduli del gestionale SMP ordinario.");
   y-=12;add("CONDIZIONI DA APPROVARE",13,true);
   add("Durata annuale, disciplina del rinnovo e disdetta, limiti applicativi, disponibilita del servizio, responsabilita, trattamento dati e assistenza dovranno essere formalizzati nelle condizioni generali definitive prima della sottoscrizione vincolante.");y-=16;
   add("ACCETTAZIONI RESE IN FASE DI GENERAZIONE",12,true);
-  ["Condizioni contrattuali","Informativa privacy","Piano selezionato","Durata annuale e rinnovo automatico"].forEach(x=>add("[X] "+x));
+  ["Condizioni contrattuali","Informativa privacy","Piano selezionato","Durata annuale e rinnovo volontario"].forEach(x=>add("[X] "+x));
   y-=25;add("Data: ______________________________");add("Firma del sottoscrittore: ____________________________________");
   pdf.setTitle("Documento di sottoscrizione Studio Manager Pro AML - "+plan.name);
   const bytes=await pdf.save();
