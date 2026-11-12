@@ -2,7 +2,7 @@
 // I prezzi di produzione sono sempre validati sul server tramite Price ID Stripe.
 export const amlPlans = [
   {id:"starter",name:"Starter",maxPractices:50,annualEur:149,features:["Fino a 50 pratiche AML","AV1, AV2, AV4 e fascicoli","Alert e scadenze","Utenti e Microsoft 365"]},
-  {id:"professional",name:"Professional",maxPractices:250,annualEur:249,features:["Fino a 200 pratiche AML","AV1, AV2, AV4 e fascicoli","Alert e scadenze","Utenti e Microsoft 365"]},
+  {id:"professional",name:"Professional",maxPractices:250,annualEur:249,features:["Fino a 250 pratiche AML","AV1, AV2, AV4 e fascicoli","Alert e scadenze","Utenti e Microsoft 365"]},
   {id:"business",name:"Business",maxPractices:null,annualEur:349,features:["Pratiche AML illimitate","AV1, AV2, AV4 e fascicoli","Alert e scadenze","Utenti e Microsoft 365"]},
 ] as const;
 export type AmlPlanId=(typeof amlPlans)[number]["id"];
